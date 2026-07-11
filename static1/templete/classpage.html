@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ class_name }} - Materials</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <h1>{{ class_name }} Dashboard</h1>
+            <a href="{{ url_for('upload_page', class_name=class_name) }}" class="btn">+ Upload Material</a>
+        </div>
+
+        <h2>Available Resources</h2>
+        <ul class="card-list">
+            {% for material in materials %}
+                <li>
+                    <strong>{{ material[0] }}</strong> <br>
+                    
+                    {% if material[1] == 'file' %}
+                        📁 <a href="{{ url_for('uploaded_file', filename=material[2]) }}" target="_blank">View / Download PDF</a>
+                    {% elif material[1] == 'link' %}
+                        ▶️ <a href="{{ material[3] }}" target="_blank">Watch on YouTube</a>
+                    {% endif %}
+                </li>
+            {% else %}
+                <p>No materials have been uploaded for this class yet.</p>
+            {% endfor %}
+        </ul>
+
+        <br><br>
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">← Back to Home</a>
+    </div>
+</body>
+</html>

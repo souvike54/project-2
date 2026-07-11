@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload to {{ class_name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Material for {{ class_name }}</h1>
+        <p>Fill out the details below to share notes or video links with your students.</p>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Title of Material:</label>
+                <input type="text" name="title" placeholder="e.g., Chapter 1: Kinematics Notes" required>
+            </div>
+
+            <div class="form-group">
+                <label>What are you uploading?</label>
+                <select name="material_type" required>
+                    <option value="file">PDF / Document File</option>
+                    <option value="link">YouTube Link</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>If File, select here:</label>
+                <input type="file" name="file" accept=".pdf,.doc,.docx,.txt">
+            </div>
+
+            <div class="form-group">
+                <label>If YouTube Link, paste here:</label>
+                <input type="url" name="yt_link" placeholder="https://youtube.com/...">
+            </div>
+
+            <br>
+            <button type="submit" class="btn">Upload Material</button>
+            <a href="{{ url_for('class_page', class_name=class_name) }}" class="btn btn-secondary" style="margin-left: 10px;">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

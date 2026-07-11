@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Academic Hub - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Select a Class</h1>
+        <p>Choose a class dashboard to view or upload academic materials.</p>
+        
+        <ul class="card-list">
+            {% for class_name in classes %}
+                <li>
+                    <a class="class-link" href="{{ url_for('class_page', class_name=class_name) }}">{{ class_name }} →</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
